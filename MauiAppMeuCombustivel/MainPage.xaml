@@ -1,27 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiAppMeuCombustivel.MainPage">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiAppMeuCombustivel.MainPage"
+    Title="Meu Combustível"
+    BackgroundColor="#F2F5F9">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a race car number eight" />
+        <VerticalStackLayout Padding="25" Spacing="12">
 
-            <Label Text="Preço do Etanol:" />
-            <Entry x:Name="txt_etanol" Placeholder="R$ " />
+            <Label
+                Text="MEU COMBUSTÍVEL"
+                FontSize="27"
+                FontAttributes="Bold"
+                TextColor="#17365D"
+                HorizontalOptions="Center"/>
 
-            <Label Text="Preço da Gasolina:" />
-            <Entry x:Name="txt_gasolina" Placeholder="R$ " />
+            <Label
+                Text="Descubra qual combustível compensa mais!"
+                FontSize="14"
+                HorizontalOptions="Center"
+                TextColor="#555555"/>
 
-            <Button Text="Qual compensa mais?" Clicked="Button_Clicked" />
+            <Label
+                Text="DADOS DO VEÍCULO"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="#17365D"/>
+
+            <Label Text="Marca do Veículo" FontAttributes="Bold"/>
+
+            <Entry
+                x:Name="txt_marca"
+                Placeholder="Ex.: Volkswagen"
+                BackgroundColor="White"
+                TextColor="Black"/>
+
+            <Label Text="Modelo do Veículo" FontAttributes="Bold"/>
+
+            <Entry
+                x:Name="txt_modelo"
+                Placeholder="Ex.: Gol"
+                BackgroundColor="White"
+                TextColor="Black"/>
+
+            <Label
+                Text="PREÇOS DOS COMBUSTÍVEIS"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="#17365D"/>
+
+            <Label Text="Preço do Etanol (R$)" FontAttributes="Bold"/>
+
+            <Entry
+                x:Name="txt_etanol"
+                Placeholder="Ex.: 3,90"
+                Keyboard="Numeric"
+                BackgroundColor="White"
+                TextColor="Black"/>
+
+            <Label Text="Preço da Gasolina (R$)" FontAttributes="Bold"/>
+
+            <Entry
+                x:Name="txt_gasolina"
+                Placeholder="Ex.: 5,90"
+                Keyboard="Numeric"
+                BackgroundColor="White"
+                TextColor="Black"/>
+
+            <Button
+                Text="QUAL COMPENSA MAIS?"
+                Clicked="Button_Clicked"
+                BackgroundColor="#17365D"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="12"
+                HeightRequest="55"/>
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

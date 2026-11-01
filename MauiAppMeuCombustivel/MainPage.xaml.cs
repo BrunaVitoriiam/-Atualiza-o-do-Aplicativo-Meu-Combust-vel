@@ -1,36 +1,63 @@
-﻿namespace MauiAppMeuCombustivel
+﻿
+namespace MauiAppMeuCombustivel;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    public MainPage()
     {
-        public MainPage()
+        InitializeComponent();
+    }
+
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        string marca = txt_marca.Text?.Trim() ?? "";
+        string modelo = txt_modelo.Text?.Trim() ?? "";
+
+        if (string.IsNullOrWhiteSpace(marca) ||
+            string.IsNullOrWhiteSpace(modelo))
         {
-            InitializeComponent();
+            await DisplayAlert(
+                "Atenção",
+                "Informe a marca e o modelo do veículo.",
+                "OK");
+            return;
         }
 
-        private void Button_Clicked(System.Object sender, System.EventArgs e)
+        var cultura = System.Globalization.CultureInfo.GetCultureInfo("pt-BR");
+
+        bool etanolValido = double.TryParse(
+            txt_etanol.Text,
+            System.Globalization.NumberStyles.Number,
+            cultura,
+            out double etanol);
+
+        bool gasolinaValida = double.TryParse(
+            txt_gasolina.Text,
+            System.Globalization.NumberStyles.Number,
+            cultura,
+            out double gasolina);
+
+        if (!etanolValido || !gasolinaValida ||
+            etanol <= 0 || gasolina <= 0)
         {
-            try
-            {
-                double etanol = Convert.ToDouble(txt_etanol.Text);
-                double gasolina = Convert.ToDouble(txt_gasolina.Text);
+            await DisplayAlert(
+                "Atenção",
+                "Informe preços válidos e maiores que zero.",
+                "OK");
+            return;
+        }
 
-                string msg = "";
+        string resultado;
 
-                if(etanol <= (gasolina * 0.7) )
-                {
-                    msg = "O etanol está compensando.";
-                } else
-                {
-                    msg = "A gasolina está compensando.";
-                }
+        if (etanol / gasolina <= 0.70)
+        {
+            resultado = $"O etanol está compensando para o seu {marca} {modelo}.";
+        }
+        else
+        {
+            resultado = $"A gasolina está compensando para o seu {marca} {modelo}.";
+        }
 
-                DisplayAlert("Calculado", msg, "OK");
-
-            } catch(Exception ex)
-            {
-                DisplayAlert("Ops", ex.Message, "Fechar");
-            }
-
-        } // Fecha método
-    } //Fecha Class
-} // Fecha namespace
+        await DisplayAlert("Resultado", resultado, "OK");
+    }
+}
