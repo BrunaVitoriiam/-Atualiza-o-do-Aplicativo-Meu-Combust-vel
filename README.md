@@ -1,4 +1,4 @@
-#Atividade Agenda10 de DS- Atualização do aplicativo de combustível
+#Atividade Agenda10 de DS- Atualização do aplicativo de combustível -professsor Tiago
 
 Repositório do projeto do Meu Combustível com .NET MAUI, primeiro App testando entrada, processamento e saída de dados.
 
